@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Grapher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('circular') }}">Circular</a></li>
+            <li><a href="{{ url_for('multiD') }}">3D</a></li>
+        </ul>
+    </nav>
+    <h1>Circular Graphing</h1>
+    <form method="post">
+
+        <div>
+            <label for="graph_title">Title:</label>
+            {% if result%}
+            <input type="text" id="user_input_data" name="graph_title"  value="{{ result[2] }}">
+            {% else %}
+            <input type="text" id="user_input_data" name="graph_title"  value="Title">
+            {% endif %}
+
+        </div>
+
+        <div>
+            {% if result%}
+            <label for="user_input_x">Enter R Data:</label>
+            <input type="text" id="user_input_data" name="user_input_x" required value="{{ result[3] }}">
+            {% else %}
+            <label for="user_input_x">Enter ϴ Data:</label>
+            <input type="text" id="user_input_data" name="user_input_x" required value ='0,1,2,3'>
+            {% endif %}
+
+        </div>
+
+        <div>
+            {% if result%}
+            <label for="user_input_y">Enter Y Data:</label>
+            <input type="text" id="user_input_data" name="user_input_y" required value="{{ result[4] }}">
+            {% else %}
+            <label for="user_input_y">Enter Y Data:</label>
+            <input type="text" id="user_input_data" name="user_input_y" required value ='0,1,2,3'>
+            {% endif %}
+        </div>
+
+        {% if result%}
+        <div>
+            <label>
+                <input type="radio" name="options_grid" value="No Grid" {{ result[5] }}>
+                No Grid
+            </label>
+            <label>
+                <input type="radio" name="options_grid" value="Grid" {{ result[6] }}>
+                Grid
+            </label>
+        </div>
+        {% else %}
+        <div>
+            <label>
+                <input type="radio" name="options_grid" value="No Grid" checked>
+                No Grid
+            </label>
+            <label>
+                <input type="radio" name="options_grid" value="Grid">
+                Grid
+            </label>
+        </div>
+        {% endif %}
+
+        <label for="options">Line Type</label>
+        <select id="options" name="selected_line">
+            {% for option in options %}
+                {% if result%}
+                    {% if option == result[7]%}
+                    <option value="{{ option }}" selected>{{ option }}</option>
+                    {% else %}
+                    <option value="{{ option }}">{{ option }}</option>
+                    {% endif %}
+                {% else %}
+                <option value="{{ option }}">{{ option }}</option>
+                {% endif %}
+
+            {% endfor %}
+        </select>
+        <br>
+
+        <button type="submit">Process</button>
+
+        
+        
+    </form>
+
+    <form method="download">
+        <button type="submit">Download</button>
+
+    </form>
+    <div id="image-container">
+        <img src="{{ url_for('static', filename='image.png') }}" alt="Graph" id="Graph">
+        {% if result %}
+        <p id="{{ result[1] }}">{{ result[0] }}</p>
+        {% endif %}
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

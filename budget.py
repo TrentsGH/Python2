@@ -100,19 +100,18 @@ class day_cell(Canvas):
         self.content.append(str(x))
     def add_day(self):
         x = self.get_size()
+        x[0]-=4
         x[1] = 0
         self.dayl = self.create_text(x[0],x[1],text=self.day,anchor='ne')
         self.after(100,self.resize)
     def resize(self):
-        x = self.get_size()
-        x[1] = 0
-        self.
-        self.dayl = self.create_text(x[0],x[1],text=self.day,anchor='ne')
-        self.after(100,self.add_day)
+        x = self.winfo_width()-8,0
+        self.moveto(self.dayl,x[0],x[1])
+        self.after(100,self.resize)
         
 
 main = Tk()
-j = day_cell('11/10/23',main,width=40,height=50,bg='green')
+j = day_cell('11/10/23',main,width=400,height=50,bg='green')
 j.pack(fill=BOTH,expand=True)
 mainloop()
 
