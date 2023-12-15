@@ -1,11 +1,33 @@
 body {
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
+    padding: 0;
+    padding-top: 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+main {
+  flex: 1;
+  
+}
+
+
+nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; /* Ensure it's above other elements */
 }
 
 #user_input_data {
     height: 200;
     width: 200;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 #image-container {
