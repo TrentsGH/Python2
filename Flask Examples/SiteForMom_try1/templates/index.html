@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOlden Touch Massage</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='indexscript.js') }}"></script>
+    
+    
+</head>
+<nav>
+    <ul>
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('staff') }}">Staff</a></li>
+        <li><a href="{{ url_for('services') }}">Services</a></li>
+        <li><a href="{{ url_for('gift_cards') }}">Gift Cards</a></li>
+    </ul>
+</nav>
+
+<body>
+    
+    <div class="center-box">
+        <div class="main-image">
+            <div id="snowflakes-container"></div>
+            <img src="{{ url_for('static', filename='xmas.jpg') }}" alt="Graph" id="Graph">
+        </div>
+        
+        <h1>Golden Touch Message and Spa</h1>
+        <p>template for mom</p>
+        <div class="slideshow-container">
+            {% for image in images %}
+                <div class="mySlides">
+                    <img src="{{ url_for('static', filename=image) }}">
+                </div>
+            {% endfor %}
+    </div>
+    </div>
+
+</body>
+</html>
